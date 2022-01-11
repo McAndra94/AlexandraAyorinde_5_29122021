@@ -13,13 +13,5 @@ colors : ${element[1].colors}
 let api = fetch("http://localhost:3000/api/products" + idProduct)
 .then(
     async result =>{
-        let response = await result.json();
-        console.log(response);
-        Object.entries(response).forEach(element => {
-            let items = document.getElementsByClassName("  ");
-
-
-        
-        });
-    }
+        let response = await result.json();}
 )
