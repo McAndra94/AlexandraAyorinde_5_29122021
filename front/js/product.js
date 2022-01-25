@@ -33,10 +33,25 @@ let api = fetch("http://localhost:3000/api/products/" + idProduct)
     }
 )
 
-/*
-document.getElementById("addToCart").addEventListener("click", (event)=>{
-    if (value > 0){
-        let
+let addToCartBtn = document.getElementById("addToCart");
+console.log(addToCartBtn)
+
+addToCartBtn.addEventListener("click",(event)=>{
+    let quantity = document.getElementById("quantity");
+    let color = document.getElementById("colors"); 
+
+    if(quantity.value > 0 && quantity.value <100){
+        addToCart(idProduct,quantity.value,color.value);
     }
-};
-*/
+})
+
+        let productImg = document.createElement("img");
+        document.querySelector(".item__img").appendChild(productImg);
+        productImg.src = response.imageUrl;
+        productImg.alt = response.altTxt;
+
+        const productName = document.getElementById("title");
+        productName.innerHTML = response.name;
+
+        const productPrice = document.getElementById("price");
+        productPrice.innerHTML = response.price;
