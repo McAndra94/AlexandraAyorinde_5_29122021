@@ -1,6 +1,3 @@
-/*let items = document.getElementById("items");
-console.log(items);*/
-
 let api = fetch("http://localhost:3000/api/products")
 .then(
     async result =>{

@@ -45,7 +45,7 @@ addToCartBtn.addEventListener("click",(event)=>{
     }
 })
 
-        let productImg = document.createElement("img");
+       /*  let productImg = document.createElement("img");
         document.querySelector(".item__img").appendChild(productImg);
         productImg.src = response.imageUrl;
         productImg.alt = response.altTxt;
@@ -54,4 +54,4 @@ addToCartBtn.addEventListener("click",(event)=>{
         productName.innerHTML = response.name;
 
         const productPrice = document.getElementById("price");
-        productPrice.innerHTML = response.price;
+        productPrice.innerHTML = response.price; */
