@@ -44,14 +44,3 @@ addToCartBtn.addEventListener("click",(event)=>{
         addToCart(idProduct,quantity.value,color.value);
     }
 })
-
-       /*  let productImg = document.createElement("img");
-        document.querySelector(".item__img").appendChild(productImg);
-        productImg.src = response.imageUrl;
-        productImg.alt = response.altTxt;
-
-        const productName = document.getElementById("title");
-        productName.innerHTML = response.name;
-
-        const productPrice = document.getElementById("price");
-        productPrice.innerHTML = response.price; */

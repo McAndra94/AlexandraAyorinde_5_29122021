@@ -28,3 +28,14 @@ function addToCart(id,number,color){
 
     updateLocalStorage(products)
 }
+
+/**
+ * 
+ * @param {*} id 
+ * @param {*} color 
+ * @param {*} count 
+ */
+function updateCountProducts(id,color,count){
+    console.log(id); 
+    console.log(count);
+}
