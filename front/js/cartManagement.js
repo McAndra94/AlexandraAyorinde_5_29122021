@@ -38,4 +38,20 @@ function addToCart(id,number,color){
 function updateCountProducts(id,color,count){
     console.log(id); 
     console.log(count);
+    let cartProducts = getProductFromLocalStorage()
+    console.log(Number(count) > 0)
+    if(Number(count) > 0){
+        cartProducts[id][color] = count
+    }
+    updateLocalStorage(cartProducts)
+}
+
+function productDelete(id,color){
+    console.log(id); 
+    let products = getProductFromLocalStorage();
+    if(products[id]){
+        delete products[id]
+    }
+    updateLocalStorage(products)
+    location.reload()
 }

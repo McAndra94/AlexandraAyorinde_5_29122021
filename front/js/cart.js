@@ -1,12 +1,3 @@
-/* let api = fetch("http://localhost:3000/api/products")
-.then(
-    async result =>{
-        let response = await result.json();
-        console.log(response);
-        
-    }
-) */
-
 let productInCart = getProductFromLocalStorage();
 console.log(productInCart);
 
@@ -22,7 +13,6 @@ if(Object.keys(productInCart).length !== 0){
                 async result =>{
                     let response = await result.json();
                     console.log(response);
-                    console.log(response.quantity);
                     cartItems.innerHTML += 
                     `<article class="cart__item" data-id="${id}" data-color="${color}">
                         <div class="cart__item__img">
@@ -57,15 +47,31 @@ if(Object.keys(productInCart).length !== 0){
                             console.log(elementId)
                             console.log(elementColor)
                             updateCountProducts(elementId,elementColor,element.value)
-                    
                         })
                     })
                     let itemsDelete = document.getElementsByClassName("deleteItem");
                     Object.values(itemsDelete).forEach((element)=>{
                         element.addEventListener("click",function(event){
-                            itemsDelete.innerHTML = "Supprimer";         
+                            let elementToDeleteId = element.closest("article").getAttribute("data-id")
+                            let elementToDeleteColor = element.closest("article").getAttribute("data-color")
+                            productDelete(elementToDeleteId,elementToDeleteColor) 
                         })
                     })
+                    
+                    /* 
+                    
+                    // Récupération tt Qty
+                    let productTotalQuantity = document.getElementById("totalQuantity");
+                    productTotalQuantity.innerHTML = totalQuantity;
+                    console.log(totalQuantity);
+                    
+                    // Récupération tt Price
+                    let productTotalPrice = document.getElementById("totalPrice");
+                    productTotalPrice.innerHTML = totalPrice;
+                    console.log(totalPrice);
+                    } 
+                    
+                    */
                 }
             )
         }
@@ -73,3 +79,31 @@ if(Object.keys(productInCart).length !== 0){
 } else {
 
 }
+//Valider : formulaire
+const submit = function(event){
+
+    let prenom = document.getElementById("firstName")
+    let nom = document.getElementById("lastName")
+    let adresse = document.getElementById("address")
+    let ville = document.getElementById("city")
+    let email = document.getElementById("email")
+}
+
+document.addEventListener("DOMContentLoaded", submit);
+
+/*
+    var inputFirstName = document.getElementById("firstName");
+    localStorage.setItem("firstName", inputFirstName.value);
+
+    var inputLastName = document.getElementById("lastName");
+    localStorage.setItem("lastName", inputLastName.value);
+
+    var inputAddress = document.getElementById("address");
+    localStorage.setItem("address", inputAddress.value);
+
+    var inputCity = document.getElementById("city");
+    localStorage.setItem("city", inputCity.value);
+
+    var inputEmail= document.getElementById("email");
+    localStorage.setItem("email", inputEmail.value);
+ */
