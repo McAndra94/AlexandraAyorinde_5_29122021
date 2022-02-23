@@ -58,20 +58,27 @@ if(Object.keys(productInCart).length !== 0){
                         })
                     })
                     
-                    /* 
-                    
                     // Récupération tt Qty
                     let productTotalQuantity = document.getElementById("totalQuantity");
-                    productTotalQuantity.innerHTML = totalQuantity;
+                    if (productTotalQuantity.innerHTML === ""){
+                        productTotalQuantity.innerHTML = "0"
+                    }
+                    console.log(productTotalQuantity.innerHTML)
+                    let previousQuantity = parseInt(productTotalQuantity.innerHTML) 
+                    let finalQuantity = previousQuantity+parseInt(count)
+                    productTotalQuantity.innerHTML = finalQuantity.toString()
                     console.log(totalQuantity);
                     
                     // Récupération tt Price
                     let productTotalPrice = document.getElementById("totalPrice");
-                    productTotalPrice.innerHTML = totalPrice;
+                    if (productTotalPrice.innerHTML === ""){
+                        productTotalPrice.innerHTML = "0,00"
+                    }
+                    console.log(productTotalPrice.innerHTML)
+                    let previousPrice = parseInt(productTotalPrice.innerHTML) 
+                    let finalPrice = previousPrice+parseInt(response.price)
+                    productTotalPrice.innerHTML = finalPrice.toString()
                     console.log(totalPrice);
-                    } 
-                    
-                    */
                 }
             )
         }
@@ -79,31 +86,127 @@ if(Object.keys(productInCart).length !== 0){
 } else {
 
 }
-//Valider : formulaire
-const submit = function(event){
 
-    let prenom = document.getElementById("firstName")
-    let nom = document.getElementById("lastName")
-    let adresse = document.getElementById("address")
-    let ville = document.getElementById("city")
-    let email = document.getElementById("email")
-}
+    //Valider : formulaire
+    /* const submit = function(event){ */
+        let prenom = document.getElementById("firstName")
+        let prenomErrorMsg = document.getElementById("firstNameErrorMsg")
+        let regexPrenom = /^[a-zA-Z\-]+$/
+        let nom = document.getElementById("lastName")
+        let nomErrorMsg = document.getElementById("lastNameErrorMsg")
+        let regexNom = /^[a-zA-Z\-]+$/
+        let adresse = document.getElementById("address")
+        let adresseErrorMsg = document.getElementById("addressErrorMsg")
+        let regexAddress = /^[a-zA-Z0-9\-]+$/
+        let ville = document.getElementById("city")     
+        let villeErrorMsg = document.getElementById("cityErrorMsg")
+        let regexVille = /^[a-zA-Z\-]+$/
+        let courriel = document.getElementById("email")
+        let courrielErrorMsg = document.getElementById("emailErrorMsg")
+        let regexCourriel = /^[a-zA-Z0-9-._]+[@]{1}[a-zA-Z0-9-._]+[.]{1}[a-zA-Z]+$/
+        let btnSubmit = document.getElementById("order")
+    /* } */
+    /* let form = document.getElementsByClassName("cart__order__form");
 
-document.addEventListener("DOMContentLoaded", submit);
+    function submitform(){
+        if(document.submit.onsubmit()){
+          document.submit.submit();
+        }
+    } 
+    console.log(prenom.value.match(regexPrenom) === null)*/
 
-/*
-    var inputFirstName = document.getElementById("firstName");
-    localStorage.setItem("firstName", inputFirstName.value);
+    document.addEventListener("click", function(event){
+        console.log(event)
+        event.preventDefault()
 
-    var inputLastName = document.getElementById("lastName");
-    localStorage.setItem("lastName", inputLastName.value);
+        let valide = false
 
-    var inputAddress = document.getElementById("address");
-    localStorage.setItem("address", inputAddress.value);
+        if(prenom.value === ""){
+            prenom.style.border = "red 2px solid"
+            prenomErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
+            valide = false
+        } else if (prenom.value.match(regexPrenom) === null) {
+            prenom.style.border = "red 2px solid"
+            prenomErrorMsg.innerHTML = "Ce champ ne doit pas contenir de chiffres."
+            valide = false
+        } else {
+            prenomErrorMsg.innerHTML = ""
+            prenom.style.border = "green 2px solid"
+            valide = true
+        } 
+        if(nom.value === ""){
+            nom.style.border = "red 2px solid"
+            nomErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
+            valide = false
+        } else if (nom.value.match(regexNom) === null) {
+            nom.style.border = "red 2px solid"
+            nomErrorMsg.innerHTML = "Ce champ ne doit pas contenir de chiffres."
+            valide = false
+        } else {
+            nomErrorMsg.innerHTML = ""
+            nom.style.border = "green 2px solid"
+            valide = true
+        }
+        if(adresse.value === ""){
+            adresse.style.border = "red 2px solid"
+            adresse.innerHTML = "Ce champ ne doit pas être vide."
+            valide = false
+        } else if (adresse.value.match(regexAdresse) === null) {
+            adresse.style.border = "red 2px solid"
+            adresseErrorMsg.innerHTML = "Ce champ doit être une adresse valide."
+            valide = false
+        } else {
+            adresseErrorMsg.innerHTML = ""
+            adresse.style.border = "green 2px solid"
+            valide = true
+        }
+        if(ville.value === ""){
+            ville.style.border = "red 2px solid"
+            villeErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
+            valide = false
+        } else if (ville.value.match(regexVille) === null) {
+            ville.style.border = "red 2px solid"
+            villeErrorMsg.innerHTML = "Ce champ ne doit pas contenir de chiffres."
+            valide = false
+        } else {
+            villeErrorMsg.innerHTML = ""
+            ville.style.border = "green 2px solid"
+            valide = true
+        } 
+        if(courriel.value === ""){
+            courriel.style.border = "red 2px solid"
+            courrielErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
+            valide = false
+        } else if (courriel.value.match(regexCourriel) === null) {
+            courriel.style.border = "red 2px solid"
+            courrielErrorMsg.innerHTML = "Ce champ doit être une adresse mail valide."
+            valide = false
+        } else {
+            courrielErrorMsg.innerHTML = ""
+            courriel.style.border = "green 2px solid"
+            valide = true
+        } 
+        if(valide == true){
+            let productsId = getProductsId(productInCart)
+            const firstName = prenom.value
+            const lastName = nom.value
+            fetch("localhost:3000/api/products/order", {
+                method: "post",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    contact: {
+                        firstName, lastName
+                    },
+                    products: productsId
+                })
+            })
+        }
 
-    var inputCity = document.getElementById("city");
-    localStorage.setItem("city", inputCity.value);
+    });
 
-    var inputEmail= document.getElementById("email");
-    localStorage.setItem("email", inputEmail.value);
- */
+
+
+

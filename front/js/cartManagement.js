@@ -55,3 +55,7 @@ function productDelete(id,color){
     updateLocalStorage(products)
     location.reload()
 }
+
+function getProductsId(products){
+    
+}
