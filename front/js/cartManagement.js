@@ -57,5 +57,12 @@ function productDelete(id,color){
 }
 
 function getProductsId(products){
-    
+    console.log(products);
+    var ids = []
+    for(const[id,colors] of Object.entries(products)){
+        console.log(id)
+        ids.push(id) 
+    }
+    console.log(ids)
+    return ids 
 }

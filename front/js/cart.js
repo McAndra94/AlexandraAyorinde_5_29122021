@@ -87,125 +87,135 @@ if(Object.keys(productInCart).length !== 0){
 
 }
 
-    //Valider : formulaire
-    /* const submit = function(event){ */
-        let prenom = document.getElementById("firstName")
-        let prenomErrorMsg = document.getElementById("firstNameErrorMsg")
-        let regexPrenom = /^[a-zA-Z\-]+$/
-        let nom = document.getElementById("lastName")
-        let nomErrorMsg = document.getElementById("lastNameErrorMsg")
-        let regexNom = /^[a-zA-Z\-]+$/
-        let adresse = document.getElementById("address")
-        let adresseErrorMsg = document.getElementById("addressErrorMsg")
-        let regexAddress = /^[a-zA-Z0-9\-]+$/
-        let ville = document.getElementById("city")     
-        let villeErrorMsg = document.getElementById("cityErrorMsg")
-        let regexVille = /^[a-zA-Z\-]+$/
-        let courriel = document.getElementById("email")
-        let courrielErrorMsg = document.getElementById("emailErrorMsg")
-        let regexCourriel = /^[a-zA-Z0-9-._]+[@]{1}[a-zA-Z0-9-._]+[.]{1}[a-zA-Z]+$/
-        let btnSubmit = document.getElementById("order")
-    /* } */
-    /* let form = document.getElementsByClassName("cart__order__form");
+//Valider : formulaire
+let prenom = document.getElementById("firstName")
+let prenomErrorMsg = document.getElementById("firstNameErrorMsg")
+let regexPrenom = /^[a-zA-ZÀ-ú\-\s]+$/
+let nom = document.getElementById("lastName")
+let nomErrorMsg = document.getElementById("lastNameErrorMsg")
+let regexNom = /^[a-zA-ZÀ-ú\-\s]+$/
+let adresse = document.getElementById("address")
+let adresseErrorMsg = document.getElementById("addressErrorMsg")
+let regexAdresse = /^[a-zA-ZÀ-ú0-9\-\s]+$/
+let ville = document.getElementById("city")     
+let villeErrorMsg = document.getElementById("cityErrorMsg")
+let regexVille = /^[a-zA-ZÀ-ú\-\s]+$/
+let courriel = document.getElementById("email")
+let courrielErrorMsg = document.getElementById("emailErrorMsg")
+let regexCourriel = /^[a-zA-ZÀ-ú0-9-._]+[@]{1}[a-zA-Z0-9-._]+[.]{1}[a-zA-Z]+$/
+let btnSubmit = document.getElementById("order")
 
-    function submitform(){
-        if(document.submit.onsubmit()){
-          document.submit.submit();
-        }
-    } 
-    console.log(prenom.value.match(regexPrenom) === null)*/
+document.addEventListener("click", function(event){
+    console.log(event)
+    event.preventDefault() /* prevents page from reloading */
 
-    document.addEventListener("click", function(event){
-        console.log(event)
-        event.preventDefault()
+    let valide = false
 
-        let valide = false
-
-        if(prenom.value === ""){
-            prenom.style.border = "red 2px solid"
-            prenomErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
-            valide = false
-        } else if (prenom.value.match(regexPrenom) === null) {
-            prenom.style.border = "red 2px solid"
-            prenomErrorMsg.innerHTML = "Ce champ ne doit pas contenir de chiffres."
-            valide = false
+    if(prenom.value === ""){
+        prenom.style.border = "red 2px solid"
+        prenomErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
+        valide = false
+    } else if (prenom.value.match(regexPrenom) === null) {
+        prenom.style.border = "red 2px solid"
+        prenomErrorMsg.innerHTML = "Ce champ ne doit pas contenir de chiffres."
+        valide = false
         } else {
             prenomErrorMsg.innerHTML = ""
             prenom.style.border = "green 2px solid"
             valide = true
         } 
-        if(nom.value === ""){
-            nom.style.border = "red 2px solid"
-            nomErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
-            valide = false
-        } else if (nom.value.match(regexNom) === null) {
-            nom.style.border = "red 2px solid"
-            nomErrorMsg.innerHTML = "Ce champ ne doit pas contenir de chiffres."
-            valide = false
+    if(nom.value === ""){
+        nom.style.border = "red 2px solid"
+        nomErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
+        valide = false
+    } else if (nom.value.match(regexNom) === null) {
+        nom.style.border = "red 2px solid"
+        nomErrorMsg.innerHTML = "Ce champ ne doit pas contenir de chiffres."
+        valide = false
         } else {
             nomErrorMsg.innerHTML = ""
             nom.style.border = "green 2px solid"
             valide = true
         }
-        if(adresse.value === ""){
-            adresse.style.border = "red 2px solid"
-            adresse.innerHTML = "Ce champ ne doit pas être vide."
-            valide = false
-        } else if (adresse.value.match(regexAdresse) === null) {
-            adresse.style.border = "red 2px solid"
-            adresseErrorMsg.innerHTML = "Ce champ doit être une adresse valide."
-            valide = false
+    if(adresse.value === ""){
+        adresse.style.border = "red 2px solid"
+        adresseErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
+        valide = false
+    } else if (adresse.value.match(regexAdresse) === null) {
+        adresse.style.border = "red 2px solid"
+        adresseErrorMsg.innerHTML = "Ce champ doit être une adresse valide."
+        valide = false
         } else {
             adresseErrorMsg.innerHTML = ""
             adresse.style.border = "green 2px solid"
             valide = true
         }
-        if(ville.value === ""){
-            ville.style.border = "red 2px solid"
-            villeErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
-            valide = false
-        } else if (ville.value.match(regexVille) === null) {
-            ville.style.border = "red 2px solid"
-            villeErrorMsg.innerHTML = "Ce champ ne doit pas contenir de chiffres."
-            valide = false
+    if(ville.value === ""){
+        ville.style.border = "red 2px solid"
+        villeErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
+        valide = false
+    } else if (ville.value.match(regexVille) === null) {
+        ville.style.border = "red 2px solid"
+        villeErrorMsg.innerHTML = "Ce champ ne doit pas contenir de chiffres."
+        valide = false
         } else {
             villeErrorMsg.innerHTML = ""
             ville.style.border = "green 2px solid"
             valide = true
         } 
-        if(courriel.value === ""){
-            courriel.style.border = "red 2px solid"
-            courrielErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
-            valide = false
-        } else if (courriel.value.match(regexCourriel) === null) {
-            courriel.style.border = "red 2px solid"
-            courrielErrorMsg.innerHTML = "Ce champ doit être une adresse mail valide."
-            valide = false
+    if(courriel.value === ""){
+        courriel.style.border = "red 2px solid"
+        courrielErrorMsg.innerHTML = "Ce champ ne doit pas être vide."
+        valide = false
+    } else if (courriel.value.match(regexCourriel) === null) {
+        courriel.style.border = "red 2px solid"
+        courrielErrorMsg.innerHTML = "Ce champ doit être une adresse mail valide."
+        valide = false
         } else {
             courrielErrorMsg.innerHTML = ""
             courriel.style.border = "green 2px solid"
             valide = true
         } 
-        if(valide == true){
-            let productsId = getProductsId(productInCart)
-            const firstName = prenom.value
-            const lastName = nom.value
-            fetch("localhost:3000/api/products/order", {
-                method: "post",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
+        console.log(valide)
+    if(valide == true){
+        let productsId = getProductsId(productInCart)
+        const firstName = prenom.value
+        const lastName = nom.value
+        const address = adresse.value
+        const city = ville.value
+        const email = courriel.value
+        fetch("http://localhost:3000/api/products/order", {
+            method: "post",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                contact: {
+                    firstName, lastName,
+                    address,
+                    city,
+                    email
                 },
-                body: JSON.stringify({
-                    contact: {
-                        firstName, lastName
-                    },
-                    products: productsId
-                })
+                products: productsId
             })
-        }
+        }).then(async(response)=>{
+            /* console.log(response.orderId)
+            console.log(response.contact)
+            console.log(response.product) */
+            //console.log(response.json())
+            const responseJson = await response.json()
+            console.log(responseJson.orderId)
+            window.location = `confirmation.html?orderId=${responseJson.orderId}`
+        }).catch((error)=>{
+            console.log(error)
+        })
+    }
+    
+});
 
-    });
+
+
 
 
 
