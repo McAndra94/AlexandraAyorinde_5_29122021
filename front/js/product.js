@@ -42,5 +42,7 @@ addToCartBtn.addEventListener("click",(event)=>{
 
     if(quantity.value > 0 && quantity.value <100){
         addToCart(idProduct,quantity.value,color.value);
+        alert (`Le produit ${$productName} a été ajouté au panier`);
+
     }
 })
