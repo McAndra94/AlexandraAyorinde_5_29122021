@@ -1,5 +1,6 @@
-const UrlSP = new URLSearchParams(window.location.search);
-const idProduct = UrlSP.get("orderId");
-console.log(idProduct);
+const urlSearchParams = window.location.href;
+const orderUrl = new URL(urlSearchParams);
+const orderId = orderUrl.searchParams.get("orderId");
+console.log(orderId);
 
-var spanOrderId = document.getElementById("orderId")
+document.getElementById("orderId").innerText = orderId;

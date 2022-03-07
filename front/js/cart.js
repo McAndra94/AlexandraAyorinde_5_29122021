@@ -200,10 +200,6 @@ document.addEventListener("click", function(event){
                 products: productsId
             })
         }).then(async(response)=>{
-            /* console.log(response.orderId)
-            console.log(response.contact)
-            console.log(response.product) */
-            //console.log(response.json())
             const responseJson = await response.json()
             console.log(responseJson.orderId)
             window.location = `confirmation.html?orderId=${responseJson.orderId}`
