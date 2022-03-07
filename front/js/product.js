@@ -1,5 +1,5 @@
-const UrlSP = new URLSearchParams(window.location.search);
-const idProduct = UrlSP.get("id");
+const urlSearchP = new URLSearchParams(window.location.search);
+const idProduct = urlSearchP.get("id");
 console.log(idProduct);
 
 let api = fetch("http://localhost:3000/api/products/" + idProduct)
