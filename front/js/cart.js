@@ -105,7 +105,7 @@ let courrielErrorMsg = document.getElementById("emailErrorMsg")
 let regexCourriel = /^[a-zA-ZÀ-ú0-9-._]+[@]{1}[a-zA-Z0-9-._]+[.]{1}[a-zA-Z]+$/
 let btnSubmit = document.getElementById("order")
 
-document.addEventListener("click", function(event){
+btnSubmit.addEventListener("click", function(event){
     console.log(event)
     event.preventDefault() /* prevents page from reloading */
 
