@@ -13,7 +13,7 @@ function updateLocalStorage(products){
 }
 
 function addToCart(id,number,color){
-    console.log(id);    
+    /* console.log(id); */    
     let products = getProductFromLocalStorage();
     if(products[id]){
             if(products[id][color]){
@@ -36,8 +36,8 @@ function addToCart(id,number,color){
  * @param {*} count 
  */
 function updateCountProducts(id,color,count){
-    console.log(id); 
-    console.log(count);
+   /*  console.log(id); 
+    console.log(count); */
     let cartProducts = getProductFromLocalStorage()
     console.log(Number(count) > 0)
     if(Number(count) > 0){
@@ -47,7 +47,7 @@ function updateCountProducts(id,color,count){
 }
 
 function productDelete(id,color){
-    console.log(id); 
+    /* console.log(id); */ 
     let products = getProductFromLocalStorage();
     if(products[id]){
         delete products[id]
@@ -57,12 +57,12 @@ function productDelete(id,color){
 }
 
 function getProductsId(products){
-    console.log(products);
+    /* console.log(products); */
     var ids = []
     for(const[id,colors] of Object.entries(products)){
-        console.log(id)
+        /* console.log(id) */
         ids.push(id) 
     }
-    console.log(ids)
+    /* console.log(ids) */
     return ids 
 }
