@@ -12,11 +12,18 @@ function updateLocalStorage(products){
     storage.setItem("canap_cart",JSON.stringify(products))
 }
 
+function getProductCount(productId, productColor){
+    let products = getProductFromLocalStorage();
+    return parseInt(products[productId][productColor])
+}
+
 function addToCart(id,number,color){
-    /* console.log(id); */    
     let products = getProductFromLocalStorage();
     if(products[id]){
             if(products[id][color]){
+                let currentCount = getProductCount(id, color)
+                products[id][color] = parseInt(number) + currentCount;  
+            }else{
                 products[id][color] = number;
             }
     }
@@ -36,18 +43,16 @@ function addToCart(id,number,color){
  * @param {*} count 
  */
 function updateCountProducts(id,color,count){
-   /*  console.log(id); 
-    console.log(count); */
     let cartProducts = getProductFromLocalStorage()
     console.log(Number(count) > 0)
     if(Number(count) > 0){
         cartProducts[id][color] = count
     }
     updateLocalStorage(cartProducts)
+    location.reload()
 }
 
 function productDelete(id,color){
-    /* console.log(id); */ 
     let products = getProductFromLocalStorage();
     if(products[id]){
         delete products[id]
@@ -56,13 +61,10 @@ function productDelete(id,color){
     location.reload()
 }
 
-function getProductsId(products){
-    /* console.log(products); */
+function getProductsId(products){  
     var ids = []
     for(const[id,colors] of Object.entries(products)){
-        /* console.log(id) */
         ids.push(id) 
     }
-    /* console.log(ids) */
     return ids 
 }

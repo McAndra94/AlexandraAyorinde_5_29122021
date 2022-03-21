@@ -1,18 +1,14 @@
 let productInCart = getProductFromLocalStorage();
-/* console.log(productInCart); */
 
 let cartItems = document.getElementById("cart__items")
 
 if(Object.keys(productInCart).length !== 0){
     for(const[id,colors]of Object.entries(productInCart)){
-        /* console.log(id);
-        console.log(colors); */
         for(const[color,count]of Object.entries(colors)){
             let api = fetch("http://localhost:3000/api/products/" + id)
             .then(
                 async result =>{
                     let response = await result.json();
-                    /* console.log(response); */
                     cartItems.innerHTML += 
                     `<article class="cart__item" data-id="${id}" data-color="${color}">
                         <div class="cart__item__img">
@@ -44,8 +40,6 @@ if(Object.keys(productInCart).length !== 0){
                         element.addEventListener("change",function(event){
                             let elementId = element.closest("article").getAttribute("data-id")
                             let elementColor = element.closest("article").getAttribute("data-color")
-                            /* console.log(elementId)
-                            console.log(elementColor) */
                             updateCountProducts(elementId,elementColor,element.value)
                         })
                     })
@@ -58,7 +52,7 @@ if(Object.keys(productInCart).length !== 0){
                         })
                     })
                     
-                    // Récupération tt Qty
+                    // Récupération : Qauntité totale
                     let productTotalQuantity = document.getElementById("totalQuantity");
                     if (productTotalQuantity.innerHTML === ""){
                         productTotalQuantity.innerHTML = "0"
@@ -67,18 +61,17 @@ if(Object.keys(productInCart).length !== 0){
                     let previousQuantity = parseInt(productTotalQuantity.innerHTML) 
                     let finalQuantity = previousQuantity+parseInt(count)
                     productTotalQuantity.innerHTML = finalQuantity.toString()
-                    /* console.log(totalQuantity); */
+                    console.log(totalQuantity);
                     
-                    // Récupération tt Price
+                    // Récupération : Prix total
                     let productTotalPrice = document.getElementById("totalPrice");
                     if (productTotalPrice.innerHTML === ""){
-                        productTotalPrice.innerHTML = "0,00"
+                        productTotalPrice.innerHTML = 0,00
                     }
-                    /* console.log(productTotalPrice.innerHTML) */
+                    console.log(productTotalPrice.innerHTML)
                     let previousPrice = parseInt(productTotalPrice.innerHTML) 
                     let finalPrice = previousPrice+parseInt(response.price)
-                    productTotalPrice.innerHTML = finalPrice.toString()
-                    /* console.log(totalPrice); */
+                    productTotalPrice.innerHTML = finalPrice.toFixed()
                 }
             )
         }
@@ -87,7 +80,7 @@ if(Object.keys(productInCart).length !== 0){
 
 }
 
-//Valider : formulaire
+//Validation Formulaire
 let prenom = document.getElementById("firstName")
 let prenomErrorMsg = document.getElementById("firstNameErrorMsg")
 let regexPrenom = /^[a-zA-ZÀ-ú\-\s]+$/
@@ -106,8 +99,7 @@ let regexCourriel = /^[a-zA-ZÀ-ú0-9-._]+[@]{1}[a-zA-Z0-9-._]+[.]{1}[a-zA-Z]+$/
 let btnSubmit = document.getElementById("order")
 
 btnSubmit.addEventListener("click", function(event){
-    /* console.log(event) */
-    event.preventDefault() /* prevents page from reloading */
+    event.preventDefault()
 
     let valide = false
 
@@ -176,7 +168,6 @@ btnSubmit.addEventListener("click", function(event){
             courriel.style.border = "green 2px solid"
             valide = true
         } 
-        /* console.log(valide) */
     if(valide == true){
         let productsId = getProductsId(productInCart)
         const firstName = prenom.value
@@ -201,10 +192,9 @@ btnSubmit.addEventListener("click", function(event){
             })
         }).then(async(response)=>{
             const responseJson = await response.json()
-            /* console.log(responseJson.orderId) */
             window.location = `confirmation.html?orderId=${responseJson.orderId}`
         }).catch((error)=>{
-            /* console.log(error) */
+
         })
     }
     

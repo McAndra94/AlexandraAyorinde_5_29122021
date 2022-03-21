@@ -2,11 +2,8 @@ let api = fetch("http://localhost:3000/api/products")
 .then(
     async result =>{
         let response = await result.json();
-        /* console.log(response); */
         Object.entries(response).forEach(element => {
             let items = document.getElementById("items");
-            /* console.log(items);
-            console.log(element) */
             items.innerHTML += 
             `<a href="./product.html?id=${element[1]._id}">
                 <article>
